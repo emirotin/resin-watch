@@ -1,0 +1,15 @@
+{
+  "name": "resin-tty",
+  "description": "Simple resin app that uses Google's TTS endpoint",
+  "repository": {
+    "type": "git",
+    "url": "https://lifeeth@bitbucket.org/lifeeth/resin-tty.git"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "tty.js": "~0.2.13"
+  },
+  "engines": {
+      "node": "0.10.22"
+  }
+}
