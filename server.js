@@ -5,7 +5,7 @@ var app = tty.createServer({
   users: {
     admin: 'admin'
   },
-  port: 8000
+  port: process.env.PORT
 });
 
 app.listen();
