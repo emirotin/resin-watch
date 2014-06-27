@@ -1,6 +1,6 @@
 {
   "name": "resin-tty",
-  "description": "Simple resin app that uses Google's TTS endpoint",
+  "description": "Simple resin app that uses tty.js to spawn a webterminal",
   "repository": {
     "type": "git",
     "url": "https://lifeeth@bitbucket.org/lifeeth/resin-tty.git"
