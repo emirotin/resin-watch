@@ -2,7 +2,7 @@
 
 ## How it works
 
-This demo spawns a tty.js based webterminal and so that you can execute commands within the raspberrypi container.
+This demo spawns a tty.js [https://github.com/chjj/tty.js/] based webterminal and so that you can execute commands within the raspberrypi container.
 
 ## How to use
 
