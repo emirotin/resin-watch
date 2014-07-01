@@ -18,7 +18,7 @@ git remote add resin git@git.resin.io:username/projectname.git
 ```
 Replace username and projectname above with your Username and Project name on Resin.
 
-Add an environment variable called PORT with value 8000
+Add an environment variable called PORT with  a value - 8000
 
 You should be able to `git push resin master` to your devices!
 
