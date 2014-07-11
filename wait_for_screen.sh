@@ -19,7 +19,14 @@ printf "===> Resetting frame-buffer to %dx%dx%d...\n" $_XRES $_YRES $_DEPTH
 fbset --all --geometry $_XRES $_YRES $_XRES $_YRES $_DEPTH -left 0 -right 0 -upper 0 -lower 0;
 sleep 1;
 
+useradd -m pi
+
+gpasswd -a pi video
+
+echo "allowed_users=anybody" > /etc/X11/Xwrapper.config
+
 if [ -f /app/xinitrc ]; then
-	ln -fs /app/xinitrc /root/.xinitrc;
-	startx &
+	cp /app/xinitrc /home/pi/.xinitrc;
+	chown pi: /home/pi/.xinitrc
+	su - pi -c startx &
 fi
