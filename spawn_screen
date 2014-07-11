@@ -15,16 +15,21 @@ chown pi: /home/pi/.xinitrc
 
 export DIGITISER_ENDPOINT=${DIGITISER_ENDPOINT:="https://api.bitcoinaverage.com/ticker/global/GBP/"}
 export DIGITISER_VALUE_FIELD=${DIGITISER_VALUE_FIELD:="last"}
-export DIGITISER_INTERVAL=${DIGITISER_INTERVAL:10}
-export DIGITISER_MESSAGE=${DIGITISER_MESSAGE:"You can change this to something more fun."}
+export DIGITISER_INTERVAL=${DIGITISER_INTERVAL:="10"}
+export DIGITISER_MESSAGE=${DIGITISER_MESSAGE:="Hello From Resin"}
 
 
-sed -i "s|DIGITISER_ENDPOINT|$DIGITISER_ENDPOINT|g" /app/web_assets/index.html
-sed -i "s|DIGITISER_VALUE_FIELD|$DIGITISER_VALUE_FIELD|g" /app/web_assets/index.html
-sed -i "s|DIGITISER_INTERVAL|$DIGITISER_INTERVAL|g" /app/web_assets/index.html
-sed -i "s|DIGITISER_MESSAGE|$DIGITISER_MESSAGE|g" /app/web_assets/index.html
+cp -r /app/web_assets /home/pi/web_assets
 
-cp /app/web_assets /home/pi/web_assets
+sync
+
+sed -i "s|DIGITISER_ENDPOINT|$DIGITISER_ENDPOINT|g" /home/pi/web_assets/index.html
+sed -i "s|DIGITISER_VALUE_FIELD|$DIGITISER_VALUE_FIELD|g" /home/pi/web_assets/index.html
+sed -i "s|DIGITISER_INTERVAL|$DIGITISER_INTERVAL|g" /home/pi/web_assets/index.html
+sed -i "s|DIGITISER_MESSAGE|$DIGITISER_MESSAGE|g" /home/pi/web_assets/index.html
+
 chown -R pi: /home/pi/web_assets
+
+sync
 
 su - pi -c startx &

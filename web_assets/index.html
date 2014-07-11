@@ -49,7 +49,7 @@
     <script>
 	function updateDisplay() {
 		$.getJSON('DIGITISER_ENDPOINT', function(data) {
-			$("h1:first").text(DIGITISER_VALUE_FIELD);
+			$("h1:first").text(data.DIGITISER_VALUE_FIELD);
 		});
 		setTimeout(updateDisplay, DIGITISER_INTERVAL*1000);
 	}	

@@ -31,6 +31,6 @@ while true; do
 	matchbox-window-manager -use_titlebar no -use_cursor no &
 
 	# Start the browser (See http://peter.sh/experiments/chromium-command-line-switches/)
-	chromium  --app=file:///home/pi/web_assets/index.html
+	chromium  --allow-file-access --allow-file-access-from-files --app=file:///home/pi/web_assets/index.html
 
 done;
