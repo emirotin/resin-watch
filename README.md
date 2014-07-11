@@ -22,10 +22,10 @@ Replace username and projectname above with your Username and Project name on Re
 
 Add the following environment variables in your Resin.io dashboard
 
-DIGITISER_ENDPOINT - URL of the JSON endpoint like - Example: https://api.bitcoinaverage.com/ticker/global/GBP/
-DIGITISER_VALUE_FIELD - Value of the variable to display - Example: "last" in the JSON from URL above
-DIGITISER_INTERVAL - Refresh time in seconds - Example: 10
-DIGITISER_MESSAGE - Message to display on the screen below the digits - Example: Hello From Resin
+* DIGITISER_ENDPOINT - URL of the JSON endpoint like - Example: https://api.bitcoinaverage.com/ticker/global/GBP/
+* DIGITISER_VALUE_FIELD - Value of the variable to display - Example: "last" in the JSON from URL above
+* DIGITISER_INTERVAL - Refresh time in seconds - Example: 10
+* DIGITISER_MESSAGE - Message to display on the screen below the digits - Example: Hello From Resin
 
 
 You should be able to `git push resin master` to your devices!
