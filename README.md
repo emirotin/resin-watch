@@ -1,8 +1,10 @@
-# Resin.io -- Simple tty.js
+# Resin.io -- Simple Digitizer Kiosk
 
 ## How it works
 
-This demo spawns a tty.js [https://github.com/chjj/tty.js/] based webterminal and so that you can execute commands within the raspberrypi container.
+This demo uses a JSON endpoint and variable provided as environment variables to display digits on your screen. 
+
+This work is based on the blogpost at http://blogs.wcode.org/2013/09/howto-boot-your-raspberry-pi-into-a-fullscreen-browser-kiosk/
 
 ## How to use
 
@@ -18,7 +20,13 @@ git remote add resin git@git.resin.io:username/projectname.git
 ```
 Replace username and projectname above with your Username and Project name on Resin.
 
-Add an environment variable called PORT with  a value - 8000
+Add the following environment variables in your Resin.io dashboard
+
+DIGITISER_ENDPOINT - URL of the JSON endpoint like - Example: https://api.bitcoinaverage.com/ticker/global/GBP/
+DIGITISER_VALUE_FIELD - Value of the variable to display - Example: "last" in the JSON from URL above
+DIGITISER_INTERVAL - Refresh time in seconds - Example: 10
+DIGITISER_MESSAGE - Message to display on the screen below the digits - Example: Hello From Resin
+
 
 You should be able to `git push resin master` to your devices!
 
@@ -26,5 +34,5 @@ You should be able to `git push resin master` to your devices!
 to you will have to do `git push --force resin master` the first time to delete the previous
 commits.
 
-You can now log into your terminal by pointing your browser to http://RaspberryPiAddress:8000
+You can also log into your terminal by pointing your browser to http://RaspberryPiAddress:8000
 with username and password as admin and admin.
