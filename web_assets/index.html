@@ -13,18 +13,20 @@
 
 
 		<script id="tpl-app" type="text/ractive">
-			<digit digit="{{ time.h1 }}" />
-			<digit digit="{{ time.h2 }}" />
-			&nbsp;
-			<digit digit="{{ time.m1 }}" />
-			<digit digit="{{ time.m2 }}" />
-			&nbsp;
-			<digit digit="{{ time.s1 }}" />
-			<digit digit="{{ time.s2 }}" />
+			<span class="digit-wrap"><digit digit="{{ time.h1 }}" /></span>
+			<span class="digit-wrap"><digit digit="{{ time.h2 }}" /></span>
+			<span class="digit-spacer"></span>
+			<span class="digit-wrap"><digit digit="{{ time.m1 }}" /></span>
+			<span class="digit-wrap"><digit digit="{{ time.m2 }}" /></span>
+			<span class="digit-spacer"></span>
+			<span class="digit-wrap"><digit digit="{{ time.s1 }}" /></span>
+			<span class="digit-wrap"><digit digit="{{ time.s2 }}" /></span>
 		</script>
 
 		<script id="tpl-digit" type="text/ractive">
-			<span class="digit">{{ digit }}</span>
+			<span class="digit">
+				<span class="digit__inner"></span>
+			</span>
 		</script>
 
 
