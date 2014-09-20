@@ -1,61 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>Resin Watch</title>
 
-    <title>Digitizer Kiosk</title>
+		<link rel="stylesheet/less" type="text/css" href="styles/main.less">
+		<script src="scripts/less-1.7.5.min.js"></script>
+	</head>
+	<body>
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+		<div class="watch" id="app-root"></div>
 
-    <!-- Custom styles for this template -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-  </head>
+		<script id="tpl-app" type="text/ractive">
+			<digit digit="{{ time.h1 }}" />
+			<digit digit="{{ time.h2 }}" />
+			&nbsp;
+			<digit digit="{{ time.m1 }}" />
+			<digit digit="{{ time.m2 }}" />
+			&nbsp;
+			<digit digit="{{ time.s1 }}" />
+			<digit digit="{{ time.s2 }}" />
+		</script>
 
-  <body>
+		<script id="tpl-digit" type="text/ractive">
+			<span class="digit">{{ digit }}</span>
+		</script>
 
-	<div id="hello">
-	    <div class="container">
-	    	<div class="row">
-	    		<div class="col-lg-8 col-lg-offset-2 centered">
-	    			<h1>...</h1>
-	    			<h2>DIGITISER_MESSAGE</h2>
-	    		</div><!-- /col-lg-8 -->
-	    	</div><!-- /row -->
-	    </div> <!-- /container -->
-	</div><!-- /hello -->
-<!--
-	<div id="f">
-		<div class="container">
-			<div class="row">
-				<p>Crafted with <i class="fa fa-heart"></i> by BlackTie.co.</p> 
-			</div>
-		</div>
-	</div>
--->
 
-    <script src="assets/js/bootstrap.js"></script>
-    <script>
-	function updateDisplay() {
-		$.getJSON('DIGITISER_ENDPOINT', function(data) {
-			$("h1:first").text(data.DIGITISER_VALUE_FIELD);
-		});
-		setTimeout(updateDisplay, DIGITISER_INTERVAL*1000);
-	}	
-	$(document).ready(function(){
-		setTimeout(updateDisplay, DIGITISER_INTERVAL*1000);
-	});
-    </script>
-  </body>
+
+		<script src="scripts/ractive.js"></script>
+		<script src="scripts/main.js"></script>
+	</body>
 </html>
