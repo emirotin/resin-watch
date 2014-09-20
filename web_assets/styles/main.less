@@ -44,12 +44,15 @@
 	background: #ccc;
 }
 
-@digit__segment--size: 5%;
+@digit__segment--size: 6%;
 @digit__segment--size-horizontal: @digit__segment--size * @digit--aspect-ratio;
 
 .digit__segment {
 	position: absolute;
-	background: #333;
+}
+
+.digit__segment--active {
+	background: #666;
 }
 
 .digit__segment--horizontal {

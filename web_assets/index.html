@@ -26,13 +26,12 @@
 		<script id="tpl-digit" type="text/ractive">
 			<span class="digit">
 				<span class="digit__inner">
-					<span class="digit__segment digit__segment--horizontal digit__segment--a"/>
-					<span class="digit__segment digit__segment--vertical digit__segment--b"/>
-					<span class="digit__segment digit__segment--vertical digit__segment--c"/>
-					<span class="digit__segment digit__segment--horizontal digit__segment--d"/>
-					<span class="digit__segment digit__segment--vertical digit__segment--e"/>
-					<span class="digit__segment digit__segment--vertical digit__segment--f"/>
-					<span class="digit__segment digit__segment--horizontal digit__segment--g"/>
+					{{#segments:i}}
+						<span class="digit__segment
+							digit__segment--{{ segmentOrientation(segments[i]) }}
+							digit__segment--{{ segments[i] }}
+							{{ segmentIsOn(digit, segments[i]) ? 'digit__segment--active' : '' }}"/>
+					{{/segments}}
 				</span>
 			</span>
 		</script>
