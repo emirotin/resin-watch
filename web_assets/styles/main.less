@@ -22,13 +22,14 @@
 	width: 2%;
 }
 
+@digit--aspect-ratio: 2;
 
 .digit {
 	width: 100%;
 	display: inline-block;
 	position: relative;
 	&:after {
-		padding-top: 150%; // 16:9 ratio
+		padding-top: @digit--aspect-ratio * 100%;
 		display: block;
 		content: '';
 	}
@@ -41,4 +42,55 @@
 	right: 0;
 	bottom: 0;
 	background: #ccc;
+}
+
+@digit__segment--size: 5%;
+@digit__segment--size-horizontal: @digit__segment--size * @digit--aspect-ratio;
+
+.digit__segment {
+	position: absolute;
+	background: #333;
+}
+
+.digit__segment--horizontal {
+	height: @digit__segment--size;
+	left: @digit__segment--size * 2;
+	right: @digit__segment--size * 2;
+}
+
+.digit__segment--vertical {
+	width: @digit__segment--size-horizontal;
+	height: 50% - @digit__segment--size * 2.5;
+}
+
+.digit__segment--a {
+	top: @digit__segment--size;
+}
+
+.digit__segment--b {
+	right: @digit__segment--size;
+	top: @digit__segment--size * 2;
+}
+
+.digit__segment--c {
+	right: @digit__segment--size;
+	bottom: @digit__segment--size * 2;
+}
+
+.digit__segment--d {
+	bottom: @digit__segment--size;
+}
+
+.digit__segment--e {
+	left: @digit__segment--size;
+	bottom: @digit__segment--size * 2;
+}
+
+.digit__segment--f {
+	left: @digit__segment--size;
+	top: @digit__segment--size * 2;
+}
+
+.digit__segment--g {
+	top: 50% - @digit__segment--size / 2;
 }
