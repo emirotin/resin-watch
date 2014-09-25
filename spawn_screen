@@ -1,5 +1,9 @@
 #!/bin/bash
 
+udevd --daemon
+modprobe spi-bcm2708
+modprobe fbtft_device name=adafruit22a verbose=0 rotate=90
+
 #Libraries need a ldconfig
 
 ldconfig
@@ -32,4 +36,5 @@ chown -R pi: /home/pi/web_assets
 
 sync
 
-su - pi -c startx &
+#su - pi -c startx &
+su - pi -c "env FRAMEBUFFER=/dev/fb1 startx &" # Note that this will change if we restart the container
