@@ -1,6 +1,6 @@
 (function () {
 	var defaults = {
-		tz: "09:00"
+		tz: "00:00"
 	};
 
 	function parseOptions() {
