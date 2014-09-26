@@ -1,3 +1,5 @@
+@color-bg: #536c69;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -5,22 +7,26 @@
 	box-sizing: border-box;
 }
 
-html, body, .screen, .watch {
+html, body, .screen {
 	width: 100%;
 	height: 100%;
 }
 
 .screen {
-	width: 640px;
-	height: 480px;
-	border: 1px solid #333;
+	background: @color-bg;
+	//width: 320px;
+	//height: 240px;
+}
+
+.watch {
+	width: 100%;
+	overflow: hidden;
 }
 
 .digit-wrap, .digit-spacer {
 	display: block;
 	float: left;
-	height: 80%;
-	margin-top: 10%;
+	margin-top: 1%;
 }
 
 .digit-wrap {
@@ -46,13 +52,18 @@ html, body, .screen, .watch {
 	}
 }
 
+@color-digit-bg: fade(darken(@color-bg, 10%), 60%);
+@color-segment-active: #bdfa15;
+@color-segment-inactive: fade(@color-segment-active, 15%);
+
+
 .digit__inner {
 	position: absolute;
 	left: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
-	background: #ccc;
+	background: @color-digit-bg;
 }
 
 @digit__segment--height: 6%;
@@ -109,7 +120,8 @@ html, body, .screen, .watch {
 // triangles voodoo http://jsfiddle.net/josedvq/3HG6d/
 
 @trinagle-magic-h: 7%;
-@trinagle-magic-v: 7%;
+@trinagle-magic-v1: 7.5%;
+@trinagle-magic-v2: 15.5%;
 
 .digit__segment__triangle {
 	position: absolute;
@@ -195,8 +207,8 @@ html, body, .screen, .watch {
 
 .digit__segment--vertical .digit__segment__body {
 	width: 100%;
-	top: @trinagle-magic-v;
-	bottom: @trinagle-magic-v;
+	top: @trinagle-magic-v1;
+	bottom: @trinagle-magic-v2;
 }
 
 .digit__segment--horizontal .digit__segment__body {
@@ -205,21 +217,40 @@ html, body, .screen, .watch {
 	right: @trinagle-magic-h;
 }
 
-.digit__segment--active {
+.digit__segment {
 	.digit__segment__body {
-		background: #666;
+		background: @color-segment-inactive;
 	}
 
 	.digit__segment__triangle--up:after {
-		border-bottom-color: #666;
+		border-bottom-color: @color-segment-inactive;
 	}
 	.digit__segment__triangle--down:after {
-		border-top-color: #666;
+		border-top-color: @color-segment-inactive;
 	}
 	.digit__segment__triangle--left:after {
-		border-right-color: #666;
+		border-right-color: @color-segment-inactive;
 	}
 	.digit__segment__triangle--right:after {
-		border-left-color: #666;
+		border-left-color: @color-segment-inactive;
+	}
+}
+
+.digit__segment--active {
+	.digit__segment__body {
+		background: @color-segment-active;
+	}
+
+	.digit__segment__triangle--up:after {
+		border-bottom-color: @color-segment-active;
+	}
+	.digit__segment__triangle--down:after {
+		border-top-color: @color-segment-active;
+	}
+	.digit__segment__triangle--left:after {
+		border-right-color: @color-segment-active;
+	}
+	.digit__segment__triangle--right:after {
+		border-left-color: @color-segment-active;
 	}
 }
