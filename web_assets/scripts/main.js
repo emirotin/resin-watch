@@ -1,6 +1,7 @@
 (function () {
 	var defaults = {
-		tz: "00:00"
+		tz: "00:00",
+		twitterWidgetId: "515512521596207105"
 	};
 
 	function parseOptions() {
@@ -18,7 +19,9 @@
 		return res;
 	}
 
-	var options = parseOptions('tz');
+	var options = parseOptions('tz', 'twitterWidgetId');
+
+	// WATCH
 
 	function parseTz(tz) {
 		tz = tz.replace(/[^0-9:\+\-]/g, '');
@@ -82,7 +85,7 @@
 
 	Ractive.components.digit = Digit;
 
-	var app = new Ractive({
+	var watchApp = new Ractive({
 		el: 'watch-root',
 		template: '#tpl-watch',
 		data: {
@@ -99,7 +102,7 @@
 			mins = now.getMinutes(),
 			secs = now.getSeconds();
 
-		app.set('time', {
+		watchApp.set('time', {
 			h1: ~~(hours / 10),
 			h2: hours % 10,
 			m1: ~~(mins / 10),
@@ -111,5 +114,67 @@
 
 	updateTime();
 	setInterval(updateTime, 1000);
+
+	// TWEETS
+
+	var tweetsApp = new Ractive({
+		el: 'tweets-root',
+		template: '#tpl-tweets',
+		data: {
+			tweets: [],
+			tweetIndex: null
+		}
+	});
+
+	function handleTweets(tweets){
+		tweetsApp.set({
+			tweets: tweets,
+			tweetIndex: 0
+		});
+		updateTweetIndex();
+	}
+
+	var timePerTweet = 5000,
+		tweetsCount = 10,
+		updateTimeout = null;
+
+	function fetchTweets() {
+		clearTimeout(updateTimeout);
+		twitterFetcher.fetch({
+			"id": options.twitterWidgetId,
+			"domId": '',
+			"maxTweets": tweetsCount,
+			"enableLinks": true,
+			"showUser": true,
+			"showTime": true,
+			"dateFunction": '',
+			"showRetweet": false,
+			"customCallback": handleTweets,
+			"showInteraction": false
+		});
+	}
+
+	function updateTweetIndex() {
+		var tweets = tweetsApp.get('tweets');
+		if (!tweets) {
+			return fetchTweets();
+		}
+
+		var tweetsLength = tweets.length;
+		if (!tweetsLength) {
+			return fetchTweets();
+		}
+
+		var tweetIndex = tweetsApp.get('tweetIndex') + 1;
+
+		if (tweetIndex >= tweetsLength) {
+			return fetchTweets();
+		}
+
+		tweetsApp.set('tweetIndex', tweetIndex + 1);
+		updateTimeout = setTimeout(updateTweetIndex, timePerTweet);
+	}
+
+	fetchTweets();
 
 }());

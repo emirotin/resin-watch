@@ -10,6 +10,7 @@
 	<body>
 		<div class="screen">
 			<div class="watch" id="watch-root"></div>
+			<div class="tweets" id="tweets-root"></div>
 		</div>
 
 		<script id="tpl-watch" type="text/ractive">
@@ -50,9 +51,17 @@
 			</span>
 		</script>
 
+		<script id="tpl-tweets" type="text/ractive">
+			{{#( tweets.length && tweetIndex != null )}}
+				<div class="tweets__tweet">
+					{{{ tweets[tweetIndex] }}}
+				</div>
+			{{/}}
+		</script>
 
 
 		<script src="scripts/query-string.js"></script>
+		<script src="scripts/twitterFetcher.js"></script>
 		<script src="scripts/ractive.js"></script>
 		<script src="scripts/main.js"></script>
 	</body>
