@@ -1,4 +1,53 @@
 (function () {
+	var defaults = {
+		tz: "09:00"
+	};
+
+	function parseOptions() {
+		var qs = queryString.parse(location.search);
+		var args = [].slice.call(arguments),
+			l = args.length,
+			i, a;
+		var res = {};
+
+		for (i = 0; i < l; i++) {
+			a = args[i];
+			res[a] = qs[a] || defaults[a];
+		}
+
+		return res;
+	}
+
+	var options = parseOptions('tz');
+
+	function parseTz(tz) {
+		tz = tz.replace(/[^0-9:\+\-]/g, '');
+
+		var parts = tz.split(':'),
+			hours = parts[0],
+			minutes = parts[1];
+
+		hours = parseInt(hours, 10);
+		if (isNaN(hours)) {
+			hours = 0;
+		}
+
+		minutes = parseInt(minutes, 10);
+		if (isNaN(minutes)) {
+			minutes = 0;
+		}
+
+		var sign = hours >= 0 ? 1 : -1;
+
+		hours += minutes * sign / 60;
+
+		return hours;
+	}
+
+	var tzOffset = parseTz(options.tz),
+		secsPerHour = 60 * 60 * 1000;
+
+
 	var DIGITS_TO_SEGMENTS = {
 		0: 'abcdef',
 		1: 'bc',
@@ -35,16 +84,19 @@
 
 
 	var app = new Ractive({
-		el: 'app-root',
-		template: '#tpl-app',
+		el: 'watch-root',
+		template: '#tpl-watch',
 		data: {
 			time: {}
 		}
 	});
 
 	function updateTime() {
-		var now = new Date(),
-			hours = now.getHours(),
+		var now = new Date();
+
+		now.setTime(now.getTime() + tzOffset * secsPerHour)
+
+		var hours = now.getHours(),
 			mins = now.getMinutes(),
 			secs = now.getSeconds();
 

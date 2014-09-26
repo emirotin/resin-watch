@@ -8,11 +8,11 @@
 		<script src="scripts/less-1.7.5.min.js"></script>
 	</head>
 	<body>
+		<div class="screen">
+			<div class="watch" id="watch-root"></div>
+		</div>
 
-		<div class="watch" id="app-root"></div>
-
-
-		<script id="tpl-app" type="text/ractive">
+		<script id="tpl-watch" type="text/ractive">
 			<span class="digit-wrap"><digit digit="{{ time.h1 }}" /></span>
 			<span class="digit-wrap"><digit digit="{{ time.h2 }}" /></span>
 			<span class="digit-spacer"></span>
@@ -38,6 +38,7 @@
 
 
 
+		<script src="scripts/query-string.js"></script>
 		<script src="scripts/ractive.js"></script>
 		<script src="scripts/main.js"></script>
 	</body>

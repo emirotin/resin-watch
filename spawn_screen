@@ -17,6 +17,8 @@ echo "allowed_users=anybody" > /etc/X11/Xwrapper.config
 cp /app/xinitrc /home/pi/.xinitrc;
 chown pi: /home/pi/.xinitrc
 
+export CLOCK_TZ=${CLOCK_TZ:="-07:00"}
+
 cp -r /app/web_assets /home/pi/web_assets
 
 sync
