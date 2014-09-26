@@ -82,7 +82,6 @@
 
 	Ractive.components.digit = Digit;
 
-
 	var app = new Ractive({
 		el: 'watch-root',
 		template: '#tpl-watch',

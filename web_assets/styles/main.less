@@ -10,11 +10,11 @@ html, body, .screen, .watch {
 	height: 100%;
 }
 
-/*.screen {
-	width: 320px;
-	height: 240px;
+.screen {
+	width: 640px;
+	height: 480px;
 	border: 1px solid #333;
-}*/
+}
 
 .digit-wrap, .digit-spacer {
 	display: block;
@@ -55,56 +55,171 @@ html, body, .screen, .watch {
 	background: #ccc;
 }
 
-@digit__segment--size: 6%;
-@digit__segment--size-horizontal: @digit__segment--size * @digit--aspect-ratio;
+@digit__segment--height: 6%;
+@digit__segment--width: @digit__segment--height * @digit--aspect-ratio;
+@digit--padding: 2%;
 
 .digit__segment {
 	position: absolute;
 }
 
-.digit__segment--active {
-	background: #666;
-}
-
 .digit__segment--horizontal {
-	height: @digit__segment--size;
-	left: @digit__segment--size * 2;
-	right: @digit__segment--size * 2;
+	height: @digit__segment--height;
+	left: @digit--padding + @digit__segment--width / 2;
+	right: @digit--padding + @digit__segment--width / 2;
 }
 
 .digit__segment--vertical {
-	width: @digit__segment--size-horizontal;
-	height: 50% - @digit__segment--size * 2.5;
+	width: @digit__segment--width;
+	height: 50% - @digit--padding * 2 - @digit__segment--height;
 }
 
 .digit__segment--a {
-	top: @digit__segment--size;
+	top: @digit--padding;
 }
 
 .digit__segment--b {
-	right: @digit__segment--size;
-	top: @digit__segment--size * 2;
+	right: @digit--padding;
+	top: @digit--padding + @digit__segment--height / 1.1;
 }
 
 .digit__segment--c {
-	right: @digit__segment--size;
-	bottom: @digit__segment--size * 2;
+	right: @digit--padding;
+	bottom: @digit--padding + @digit__segment--height / 1.3;
 }
 
 .digit__segment--d {
-	bottom: @digit__segment--size;
+	bottom: @digit--padding;
 }
 
 .digit__segment--e {
-	left: @digit__segment--size;
-	bottom: @digit__segment--size * 2;
+	left: @digit--padding;
+	bottom: @digit--padding + @digit__segment--height / 1.3;
 }
 
 .digit__segment--f {
-	left: @digit__segment--size;
-	top: @digit__segment--size * 2;
+	left: @digit--padding;
+	top: @digit--padding + @digit__segment--height / 1.1;
 }
 
 .digit__segment--g {
-	top: 50% - @digit__segment--size / 2;
+	top: 50% - @digit__segment--height / 2;
+}
+
+// triangles voodoo http://jsfiddle.net/josedvq/3HG6d/
+
+@trinagle-magic-h: 7%;
+@trinagle-magic-v: 7%;
+
+.digit__segment__triangle {
+	position: absolute;
+	overflow: hidden;
+	&:after {
+		content: "";
+		display: block;
+		width: 0;
+		height: 0;
+	}
+}
+
+.digit__segment__triangle--up {
+	top: 0;
+	width: 100%;
+	height: 0;
+	padding-left: 50%;
+	padding-bottom: 50%;
+	overflow: hidden;
+
+	&:after {
+		margin-left: -500px;
+
+		border-left: 500px solid transparent;
+		border-right: 500px solid transparent;
+		border-bottom: 500px solid transparent;
+	}
+}
+
+.digit__segment__triangle--down {
+	bottom: 0;
+	width: 100%;
+	height: 0;
+	padding-left: 50%;
+	padding-top: 100%;
+	&:after {
+		margin-left: -500px;
+		margin-top: -500px;
+
+		border-left: 500px solid transparent;
+		border-right: 500px solid transparent;
+		border-top: 500px solid transparent;
+	}
+}
+
+.digit__segment__triangle--left {
+	left: 0;
+
+	width: @trinagle-magic-h;
+	height: 0;
+	padding-top: @trinagle-magic-h;
+	padding-bottom: @trinagle-magic-h;
+	&:after {
+		margin-top: -500px;
+
+		border-top: 500px solid transparent;
+		border-bottom: 500px solid transparent;
+		border-right: 500px solid transparent;
+	}
+}
+
+.digit__segment__triangle--right {
+	right: 0;
+
+	width: 0%;
+	height: 0;
+	padding-top: @trinagle-magic-h;
+	padding-bottom: @trinagle-magic-h;
+	padding-left: @trinagle-magic-h;
+	&:after {
+		margin-top: -500px;
+		margin-left: -500px;
+
+		border-top: 500px solid transparent;
+		border-bottom: 500px solid transparent;
+		border-left: 500px solid transparent;
+	}
+}
+
+.digit__segment__body {
+	position: absolute;
+}
+
+.digit__segment--vertical .digit__segment__body {
+	width: 100%;
+	top: @trinagle-magic-v;
+	bottom: @trinagle-magic-v;
+}
+
+.digit__segment--horizontal .digit__segment__body {
+	height: 100%;
+	left: @trinagle-magic-h;
+	right: @trinagle-magic-h;
+}
+
+.digit__segment--active {
+	.digit__segment__body {
+		background: #666;
+	}
+
+	.digit__segment__triangle--up:after {
+		border-bottom-color: #666;
+	}
+	.digit__segment__triangle--down:after {
+		border-top-color: #666;
+	}
+	.digit__segment__triangle--left:after {
+		border-right-color: #666;
+	}
+	.digit__segment__triangle--right:after {
+		border-left-color: #666;
+	}
 }

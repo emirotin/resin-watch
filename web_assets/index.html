@@ -30,7 +30,21 @@
 						<span class="digit__segment
 							digit__segment--{{ segmentOrientation(segments[i]) }}
 							digit__segment--{{ segments[i] }}
-							{{ segmentIsOn(digit, segments[i]) ? 'digit__segment--active' : '' }}"/>
+							{{ segmentIsOn(digit, segments[i]) ? 'digit__segment--active' : '' }}">
+
+							<span class="digit__segment__body"></span>
+
+							{{#( segmentOrientation(segments[i]) == 'vertical' )}}
+								<span class="digit__segment__triangle digit__segment__triangle--up"></span>
+								<span class="digit__segment__triangle digit__segment__triangle--down"></span>
+							{{/}}
+
+							{{#( segmentOrientation(segments[i]) == 'horizontal' )}}
+								<span class="digit__segment__triangle digit__segment__triangle--left"></span>
+								<span class="digit__segment__triangle digit__segment__triangle--right"></span>
+							{{/}}
+
+						</span>
 					{{/segments}}
 				</span>
 			</span>
