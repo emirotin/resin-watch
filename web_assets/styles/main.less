@@ -1,6 +1,9 @@
 @import "icons.less";
 
-@color-bg: #536c69;
+@color-bg: #9ca799;
+@color-digit-bg: fade(darken(@color-bg, 10%), 30%);
+@color-segment-active: #0a0a0a;
+@color-segment-inactive: fade(@color-segment-active, 12%);
 
 * {
 	margin: 0;
@@ -53,11 +56,6 @@ html, body, .screen {
 		content: '';
 	}
 }
-
-@color-digit-bg: fade(darken(@color-bg, 10%), 60%);
-@color-segment-active: #bdfa15;
-@color-segment-inactive: fade(@color-segment-active, 15%);
-
 
 .digit__inner {
 	position: absolute;
