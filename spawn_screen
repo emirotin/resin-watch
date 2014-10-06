@@ -2,7 +2,7 @@
 
 udevd --daemon
 modprobe spi-bcm2708
-modprobe fbtft_device name=adafruitrt28 rotate=90 frequency=32000000
+modprobe fbtft_device name=adafruit28 rotate=90 frequency=32000000
 
 #Libraries need a ldconfig
 
