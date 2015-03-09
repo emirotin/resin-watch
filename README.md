@@ -27,5 +27,3 @@ You should be able to `git push resin master` to your devices!
 to you will have to do `git push --force resin master` the first time to delete the previous
 commits.
 
-You can also log into your terminal by pointing your browser to http://RaspberryPiAddress:8000
-with username and password as admin and admin.
