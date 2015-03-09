@@ -1,10 +1,6 @@
-# Resin.io -- Simple Digitizer Kiosk
+# Resin.io -- Clock
 
-## How it works
-
-This demo uses a JSON endpoint and variable provided as environment variables to display digits on your screen. 
-
-This work is based on the blogpost at http://blogs.wcode.org/2013/09/howto-boot-your-raspberry-pi-into-a-fullscreen-browser-kiosk/
+This demo, launches chromium and displays a digital clock powered by javascript. 
 
 ## How to use
 
@@ -22,11 +18,8 @@ Replace username and projectname above with your Username and Project name on Re
 
 Add the following environment variables in your Resin.io dashboard
 
-* DIGITISER_ENDPOINT - URL of the JSON endpoint like - Example: https://api.bitcoinaverage.com/ticker/global/GBP/
-* DIGITISER_VALUE_FIELD - Value of the variable to display - Example: "last" in the JSON from URL above
-* DIGITISER_INTERVAL - Refresh time in seconds - Example: 10
-* DIGITISER_MESSAGE - Message to display on the screen below the digits - Example: Hello From Resin
-
+* CLOCK_TZ - your local timezone
+* PORT - port you want you server to run on
 
 You should be able to `git push resin master` to your devices!
 
