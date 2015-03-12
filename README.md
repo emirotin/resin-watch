@@ -27,3 +27,12 @@ You should be able to `git push resin master` to your devices!
 to you will have to do `git push --force resin master` the first time to delete the previous
 commits.
 
+## Switching to HDMI
+To switch the primary display from piTFT to HDMI all you need to do is change which framebuffer is used. This can be done by changing line 31 of the spawn_screen script from:
+`- su - pi -c "env FRAMEBUFFER=/dev/fb1 startx &" `
+
+`su - pi -c "env FRAMEBUFFER=/dev/fb0 startx &"`
+
+fb0 is the framebuffer device for the raspberry pi's HDMI output. 
+
+`TODO:` Allow fb to be set with an environment variable to have it configurable from the dashboard.
