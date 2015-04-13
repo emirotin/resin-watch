@@ -7,7 +7,7 @@
   },
   "version": "0.0.1",
   "dependencies": {
-    "tty.js": "~0.2.13"
+    "tty.js": "0.2.14-1"
   },
   "engines": {
       "node": "0.10.22"
